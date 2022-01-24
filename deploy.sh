@@ -2,7 +2,7 @@
 
 cd ${DEPLOY_DIR}
 docker network create --driver overlay internal || true
-docker stack deploy --compose-file docker-compose.yaml mysql
+docker-compose up -d
 cd
 rm -rf ${DEPLOY_DIR}
 
