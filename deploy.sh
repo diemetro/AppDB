@@ -2,7 +2,8 @@
 
 cd ${DEPLOY_DIR}
 docker network create --driver overlay internal || true
-docker-compose up -d
+docker stack deploy --compose-file docker-compose.yaml db
 cd
 rm -rf ${DEPLOY_DIR}
+
 
