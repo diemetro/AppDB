@@ -20,7 +20,6 @@ services:
       labels:
         - traefik.enable=false
 
-
 networks:
   traefik-net:
     driver: overlay
