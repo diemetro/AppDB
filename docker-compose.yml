@@ -28,3 +28,6 @@ networks:
   internal:
     external: false
 
+volumes:
+  mysql-data:
+
