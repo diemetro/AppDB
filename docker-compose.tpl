@@ -4,7 +4,7 @@ services:
   mariadb:
     image: "mariadb:10.6.5"
     environment:
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     networks:
       - internal
     volumes:
