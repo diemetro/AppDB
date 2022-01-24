@@ -13,6 +13,7 @@ deploy:
   before_script:
     - apk add --no-cache sshpass openssh-client
   script:
+    - echo ${MARIADB_ROOT_PASSWORD}
     - echo ${SSH_URL}
     - eval $(ssh-agent -s)
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | base64 -d | ssh-add - > /dev/null
