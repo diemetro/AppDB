@@ -25,6 +25,7 @@ networks:
     driver: overlay
     external: true
   internal:
+    driver: overlay
     external: false
 
 volumes:
