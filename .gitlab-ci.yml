@@ -13,7 +13,6 @@ deploy:
   before_script:
     - apk add --no-cache sshpass openssh-client
   script:
-    - echo ${MARIADB_ROOT_PASSWORD}
     - echo ${SSH_URL}
     - eval $(ssh-agent -s)
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | base64 -d | ssh-add - > /dev/null
@@ -22,7 +21,7 @@ deploy:
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - ssh -p ${SSH_PORT} -o stricthostkeychecking=no ${SSH_URL} "mkdir -p ${DEPLOY_DIR}/"
     - scp -P ${SSH_PORT} -r ./docker-compose.tpl ${SSH_URL}:${DEPLOY_DIR}/
-    - ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes ${SSH_URL} DEPLOY_DIR=${DEPLOY_DIR} 'bash -s' < ./deploy.sh
+    - ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD} ${SSH_URL} DEPLOY_DIR=${DEPLOY_DIR} 'bash -s' < ./deploy.sh
   when: manual
   tags:
   - runner-docker
