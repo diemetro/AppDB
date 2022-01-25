@@ -9,8 +9,8 @@ services:
     networks:
       - internal-net
     volumes:
-      - "./build_env/mysql_users.sql:/docker-entrypoint-initdb.d/init.sql"
-      - "/var/lib/mysql:/var/lib/mysql"
+      - "/var/lib/mysql-data:/var/lib/mysql:rw"
+      - "./build_env/mysql_users.sql:/docker-entrypoint-initdb.d/init.sql:ro"
     deploy:
       mode: replicated
       replicas: 1
