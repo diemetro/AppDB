@@ -8,7 +8,6 @@ services:
     networks:
       - internal-net
     volumes:
-    volumes:
       - ${PWD}/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
       - "mariadb-data:/var/lib/mysql:rw"
     deploy:
@@ -28,4 +27,4 @@ networks:
     external: true
 
 volumes:
-  mariadb-data
+  mariadb-data:
