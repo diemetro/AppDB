@@ -8,8 +8,9 @@ services:
     networks:
       - internal-net
     volumes:
-      - "/var/lib/mysql-data:/var/lib/mysql:rw"
-      - "./build_env/mysql_users.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+    volumes:
+      - ${PWD}/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - "mariadb-data:/var/lib/mysql:rw"
     deploy:
       mode: replicated
       replicas: 1
@@ -26,3 +27,5 @@ networks:
     driver: overlay
     external: true
 
+volumes:
+  mariadb-data
