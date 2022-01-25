@@ -8,7 +8,7 @@ services:
     networks:
       - internal-net
     volumes:
-      - "build_env/mysql_users.sql:/docker-entrypoint-initdb.d/start.sql"
+      - "./build_env/mysql_users.sql:/docker-entrypoint-initdb.d/start.sql"
       - "mariadb-data:/var/lib/mysql"
     deploy:
       mode: replicated
