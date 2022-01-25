@@ -8,7 +8,7 @@ services:
     networks:
       - internal-net
     volumes:
-      - ${PWD}/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
       - "mariadb-data:/var/lib/mysql:rw"
     deploy:
       mode: replicated
