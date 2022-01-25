@@ -25,3 +25,6 @@ networks:
   internal-net:
     driver: overlay
     external: true
+
+volumes:
+  mariadb-data:
