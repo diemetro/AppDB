@@ -9,7 +9,7 @@ services:
       - internal-net
     volumes:
       - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
-      - "mariadb-data:/var/lib/mysql:rw"
+      - mariadb-data:/var/lib/mysql:rw
     deploy:
       mode: replicated
       replicas: 1
