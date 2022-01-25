@@ -28,4 +28,3 @@ networks:
 
 volumes:
   mariadb-data:
-
