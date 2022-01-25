@@ -23,7 +23,7 @@ deploy:
     - scp -P ${SSH_PORT} -r ./docker-compose.tpl ${SSH_URL}:${DEPLOY_DIR}/
     - scp -P ${SSH_PORT} -r ./initdb.sql ${SSH_URL}:${DEPLOY_DIR}/
     - ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes ${SSH_URL} DEPLOY_DIR=${DEPLOY_DIR} MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD} 'bash -s' < ./deploy.sh
-  #when: manual
+  when: manual
   tags:
   - runner-docker
   only:
