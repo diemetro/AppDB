@@ -3,14 +3,13 @@ services:
 
   mariadb:
     image: "mariadb:10.6.5"
-    command: --init-file /docker-entrypoint-initdb.d/init.sql
     environment:
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     networks:
       - internal-net
     volumes:
       - "/var/lib/mysql-data:/var/lib/mysql:rw"
-      - "./build_env/mysql_users.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+      - "build_env/mysql_users.sql:/docker-entrypoint-initdb.d/init.sql:ro"
     deploy:
       mode: replicated
       replicas: 1
