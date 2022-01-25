@@ -6,7 +6,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     networks:
-      - internal
+      - traefik-net
     volumes:
       - "mariadb-data:/var/lib/mysql"
     deploy:
