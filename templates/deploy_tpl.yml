@@ -4,7 +4,7 @@
   script:
     - echo ${SSH_URL}
     - eval $(ssh-agent -s)
-    - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | base64 -d | ssh-add - > /dev/null
+    - echo "${DEPLOY_PRIVATE_KEY}" | tr -d '\r' | base64 -d | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
