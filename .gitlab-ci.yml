@@ -18,7 +18,7 @@ master:deploy:
   when: manual
   only:
     - main
-
+##
 testing:deploy:
   stage: deploy
   image: docker:dind
