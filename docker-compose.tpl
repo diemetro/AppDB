@@ -6,9 +6,9 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     networks:
-      - internal-net
+      - internal-net-${CI_COMMIT_REF_NAME}
     volumes:
-      - mariadb-data:/var/lib/mysql
+      - mariadb-data-${CI_COMMIT_REF_NAME}:/var/lib/mysql
     deploy:
       mode: replicated
       replicas: 1
@@ -21,9 +21,9 @@ services:
         - traefik.enable=false
 
 networks:
-  internal-net:
+  internal-net-${CI_COMMIT_REF_NAME}:
     driver: overlay
     external: true
 
 volumes:
-  mariadb-data:
+  mariadb-data-${CI_COMMIT_REF_NAME}:
