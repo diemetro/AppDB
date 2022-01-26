@@ -19,7 +19,7 @@ master:deploy:
   only:
     - main
 
-tesing:deploy:
+testing:deploy:
   stage: deploy
   image: docker:dind
   variables:
