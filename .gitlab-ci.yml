@@ -14,7 +14,7 @@ master:deploy:
     DEPLOY_DIR: /tmp/${CI_COMMIT_SHORT_SHA}/
     MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
     PROJECT_NAME: AppDB
-    PROJECT_DOMAIN: mysql-ctsoft.it.scancity.ru
+    PROJECT_DOMAIN: db-app-${CI_COMMIT_REF_NAME}.it.scancity.ru
     PMA_HOST: mysql_mariadb
   extends:
     - .deploy_tpl
@@ -32,7 +32,7 @@ testing:deploy:
     DEPLOY_DIR: /tmp/${CI_COMMIT_SHORT_SHA}/
     MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
     PROJECT_NAME: AppDB
-    PROJECT_DOMAIN: db-admin.it.scancity.ru
+    PROJECT_DOMAIN: db-app-${CI_COMMIT_REF_NAME}.it.scancity.ru
     PMA_HOST: mysql-${CI_COMMIT_REF_NAME}_mariadb
 
   extends:

@@ -6,7 +6,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     networks:
-      - internal-net-${CI_COMMIT_REF_NAME}
+      - internal-net
     ports:
       - "3366:3306"
     volumes:
@@ -27,7 +27,7 @@ services:
     environment:
       PMA_HOST: "${PMA_HOST}"
     networks:
-      - internal-net-${CI_COMMIT_REF_NAME}
+      - internal-net
       - traefik-net
     deploy:
       mode: replicated
@@ -51,12 +51,12 @@ services:
       - mariadb
 
 networks:
-  internal-net-${CI_COMMIT_REF_NAME}:
+  internal-net:
     driver: overlay
     external: true
   traefik-net:
     driver: overlay
     external: true
-#
+
 volumes:
   mariadb-data-${CI_COMMIT_REF_NAME}:
