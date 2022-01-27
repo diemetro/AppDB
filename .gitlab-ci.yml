@@ -29,6 +29,9 @@ testing:deploy:
     DEPLOY_DIR: /tmp/${CI_COMMIT_SHORT_SHA}/
     MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
     PROJECT_DOMAIN: ${PROJECT_DOMAIN}
+    PROJECT_NAME: AppDB
+    PROJECT_DOMAIN: db-admin.it.scancity.ru
+
   extends:
     - .deploy_tpl
   when: manual
