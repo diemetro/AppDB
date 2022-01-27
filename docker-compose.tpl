@@ -22,11 +22,6 @@ services:
 
   adminer:
     image: adminer:4.8.1-standalone
-    labels:
-      - traefik.backend=adminer
-      - traefik.frontend.rule=Host:db-admin.your_domain
-      - traefik.docker.network=web
-      - traefik.port=8080
     networks:
       - internal-net-${CI_COMMIT_REF_NAME}
       - traefik-net
