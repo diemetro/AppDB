@@ -10,7 +10,7 @@ services:
     ports:
       - "3366:3306"
     volumes:
-      - mariadb-data-${CI_COMMIT_REF_NAME}:/var/lib/mysql
+      - mariadb-data:/var/lib/mysql
     deploy:
       mode: replicated
       replicas: 1
@@ -59,4 +59,4 @@ networks:
     external: true
 
 volumes:
-  mariadb-data-${CI_COMMIT_REF_NAME}:
+  mariadb-data:
