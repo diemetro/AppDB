@@ -22,6 +22,8 @@ services:
 
   adminer:
     image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: "${PMA_HOST}"
     networks:
       - internal-net-${CI_COMMIT_REF_NAME}
       - traefik-net
