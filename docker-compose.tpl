@@ -21,7 +21,7 @@ services:
         - traefik.enable=false
 
   adminer:
-    image: adminer:4.8.1-standalone
+    image: phpmyadmin/phpmyadmin
     networks:
       - internal-net-${CI_COMMIT_REF_NAME}
       - traefik-net
