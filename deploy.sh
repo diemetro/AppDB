@@ -8,4 +8,3 @@ docker stack deploy --compose-file docker-compose.yaml mysql-${CI_COMMIT_REF_NAM
 cd
 rm -rf ${DEPLOY_DIR}
 
-
