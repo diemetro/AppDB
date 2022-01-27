@@ -57,6 +57,6 @@ networks:
   traefik-net:
     driver: overlay
     external: true
-
+#
 volumes:
   mariadb-data-${CI_COMMIT_REF_NAME}:
