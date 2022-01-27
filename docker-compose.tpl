@@ -31,7 +31,7 @@ services:
       - traefik-net
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
       restart_policy:
         condition: any
         delay: 5s
