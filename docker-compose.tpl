@@ -20,8 +20,42 @@ services:
       labels:
         - traefik.enable=false
 
+  adminer:
+    image: adminer:4.8.1-standalone
+    labels:
+      - traefik.backend=adminer
+      - traefik.frontend.rule=Host:db-admin.your_domain
+      - traefik.docker.network=web
+      - traefik.port=8080
+    networks:
+      - internal-net-${CI_COMMIT_REF_NAME}
+      - traefik-net
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 5
+        window: 10s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.AppDB-${CI_COMMIT_REF_NAME}.rule=Host(`${PROJECT_DOMAIN}`)"
+        - "traefik.http.services.AppDB-${CI_COMMIT_REF_NAME}.loadbalancer.server.port=80"
+        - "traefik.http.routers.AppDB-${CI_COMMIT_REF_NAME}.entrypoints=websecure"
+        - "traefik.http.routers.AppDB-${CI_COMMIT_REF_NAME}.tls.certresolver=myresolver"
+        - "traefik.http.routers.AppDB-${CI_COMMIT_REF_NAME}.middlewares=AppDB-${CI_COMMIT_REF_NAME}-https"
+        - "traefik.http.middlewares.AppDB-${CI_COMMIT_REF_NAME}-https.redirectscheme.scheme=https"
+        - "traefik.docker.network=traefik-net"
+
+    depends_on:
+      - mariadb
+
 networks:
   internal-net-${CI_COMMIT_REF_NAME}:
+    driver: overlay
+    external: true
+  traefik-net:
     driver: overlay
     external: true
 
