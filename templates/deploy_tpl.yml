@@ -3,6 +3,7 @@
     - apk add --no-cache sshpass openssh-client
   script:
     - echo ${SSH_URL}
+    - echo ${PROJECT_DOMAIN}
     - eval $(ssh-agent -s)
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | base64 -d | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
