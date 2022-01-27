@@ -25,6 +25,8 @@ services:
     networks:
       - internal-net-${CI_COMMIT_REF_NAME}
       - traefik-net
+    ports:
+      - 8081:8081
     deploy:
       mode: replicated
       replicas: 1
