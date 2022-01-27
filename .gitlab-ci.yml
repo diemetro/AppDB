@@ -12,13 +12,16 @@ master:deploy:
     SSH_PRIVATE_KEY: ${DEPLOY_PRIVATE_KEY}
     SSH_PORT: ${DEPLOY_SSH_PORT}
     DEPLOY_DIR: /tmp/${CI_COMMIT_SHORT_SHA}/
-    DB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    PROJECT_NAME: AppDB
+    PROJECT_DOMAIN: db-app-${CI_COMMIT_REF_NAME}.it.scancity.ru
+    PMA_HOST: mysql-${CI_COMMIT_REF_NAME}_mariadb
   extends:
     - .deploy_tpl
   when: manual
   only:
     - main
-
+##
 testing:deploy:
   stage: deploy
   image: docker:dind
@@ -27,7 +30,11 @@ testing:deploy:
     SSH_PRIVATE_KEY: ${DEPLOY_PRIVATE_KEY}
     SSH_PORT: ${DEPLOY_SSH_PORT}
     DEPLOY_DIR: /tmp/${CI_COMMIT_SHORT_SHA}/
-    DB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    PROJECT_NAME: AppDB
+    PROJECT_DOMAIN: db-app-${CI_COMMIT_REF_NAME}.it.scancity.ru
+    PMA_HOST: mysql-${CI_COMMIT_REF_NAME}_mariadb
+
   extends:
     - .deploy_tpl
   when: manual
