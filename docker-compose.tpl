@@ -7,6 +7,8 @@ services:
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     networks:
       - internal-net-${CI_COMMIT_REF_NAME}
+    ports:
+      - "3366:3306"
     volumes:
       - mariadb-data-${CI_COMMIT_REF_NAME}:/var/lib/mysql
     deploy:
@@ -27,6 +29,8 @@ services:
     networks:
       - internal-net-${CI_COMMIT_REF_NAME}
       - traefik-net
+    ports:
+      - "8081:80"
     deploy:
       mode: replicated
       replicas: 1
@@ -43,7 +47,6 @@ services:
         - "traefik.http.routers.${PROJECT_NAME}-${CI_COMMIT_REF_NAME}.tls.certresolver=myresolver"
         - "traefik.http.routers.${PROJECT_NAME}-${CI_COMMIT_REF_NAME}.middlewares=${PROJECT_NAME}-${CI_COMMIT_REF_NAME}-https"
         - "traefik.http.middlewares.${PROJECT_NAME}-${CI_COMMIT_REF_NAME}-https.redirectscheme.scheme=https"
-        - "traefik.http.middlewares.${PROJECT_NAME}-${CI_COMMIT_REF_NAME}-8081.redirectscheme.port=80"
         - "traefik.docker.network=traefik-net"
 
     depends_on:
