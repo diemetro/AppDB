@@ -12,7 +12,11 @@ master:deploy:
     SSH_PRIVATE_KEY: ${DEPLOY_PRIVATE_KEY}
     SSH_PORT: ${DEPLOY_SSH_PORT}
     DEPLOY_DIR: /tmp/${CI_COMMIT_SHORT_SHA}/
-    DB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    PROJECT_DOMAIN: ${PROJECT_DOMAIN}
+    PROJECT_NAME: AppDB
+    PROJECT_DOMAIN: mysql-ctsoft.it.scancity.ru
+    PMA_HOST: mysql_mariadb
   extends:
     - .deploy_tpl
   when: manual
